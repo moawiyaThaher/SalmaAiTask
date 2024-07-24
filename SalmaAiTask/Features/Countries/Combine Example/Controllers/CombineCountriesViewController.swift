@@ -87,7 +87,7 @@ class CombineCountriesViewController: UIViewController {
     }
     
     private func setupNavigationItem() {
-        navigationItem.rightBarButtonItem = .init(image: .init(systemName: "magnifier"))
+        navigationItem.rightBarButtonItem = .init(image: .init(systemName: "magnifyingglass"))
         navigationItem.title = "Countries - Currency"
     }
 }
