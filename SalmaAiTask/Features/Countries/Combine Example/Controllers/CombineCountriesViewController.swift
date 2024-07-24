@@ -70,7 +70,8 @@ class CombineCountriesViewController: UIViewController {
     private func bindTableView() {
         viewModel.displayedCountries
             .sink { [weak self] _ in
-                self?.tableView.reloadData()
+                guard let self else { return }
+                reloadData()
             }
             .store(in: &cancellables)
         

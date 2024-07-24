@@ -190,9 +190,8 @@
 		E6635AC32C4EF21C00424F14 /* Countries */ = {
 			isa = PBXGroup;
 			children = (
+				E6635B012C51847000424F14 /* Rx Example */,
 				E6635AF82C516B4F00424F14 /* Combine Example */,
-				E6635AF72C5163C600424F14 /* Controllers */,
-				E6635AEA2C4FDFF000424F14 /* View Model */,
 				E6635AD12C4EF65C00424F14 /* Models */,
 				E6635AC62C4EF24800424F14 /* Views */,
 			);
@@ -303,6 +302,15 @@
 				E6635AFF2C516C0500424F14 /* CombineCountriesViewModel.swift */,
 			);
 			path = "View Model";
+			sourceTree = "<group>";
+		};
+		E6635B012C51847000424F14 /* Rx Example */ = {
+			isa = PBXGroup;
+			children = (
+				E6635AF72C5163C600424F14 /* Controllers */,
+				E6635AEA2C4FDFF000424F14 /* View Model */,
+			);
+			path = "Rx Example";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
