@@ -6,41 +6,65 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class CountriesViewModel {
-    private let apiService = APIService()
+    
+    // MARK: - Properties
+    
+    private let apiService: APIService
     private let databaseService = RealmManager.shared
     
-    var countries: [Country] = []
+    var countries = BehaviorRelay<[Country]>(value: [])
+    var displayedCountries = BehaviorRelay<[Country]>(value: [])
     var currentPage: Int = 0
     let itemsPerPage: Int = 15
     
     var onUpdate: (() -> Void)?
     
+    // MARK: - Init
+    
+    init(apiService: APIService) {
+        self.apiService = apiService
+    }
+    
+    // MARK: - Methods
+    
     func loadCountries() {
         if databaseService.isEmpty(Country.self) {
-            apiService.fetchAllCountries() { [weak self] result in
+            apiService.requestData(endpoint: CountriesAPI.fetchAllCountries) { [weak self] (result: Result<[Country], Error>) in
                 switch result {
                 case .success(let countries):
                     self?.databaseService.saveObjects(countries)
-                    self?.countries = countries
-                    self?.onUpdate?()
+                    self?.countries.accept(countries)
+                    self?.loadNextPage()
                 case .failure(let error):
                     print("Error fetching countries: \(error)")
                 }
             }
-        } else {
-            countries = databaseService.retrieveObjects(Country.self) as? [Country] ?? []
-            onUpdate?()
+        } 
+        else {
+            let savedContries = databaseService.retrieveObjects(Country.self) as? [Country] ?? []
+            countries.accept(savedContries)
+            self.loadNextPage()
         }
     }
     
     func loadNextPage() {
-        let start = currentPage * itemsPerPage
-        let end = start + itemsPerPage
-        let nextPageItems = Array(countries[start..<min(end, countries.count)])
-        currentPage += 1
-        // Append nextPageItems to the current displayed data
-        // Update the UI with onUpdate callback
+        let startIndex = currentPage * itemsPerPage
+        let endIndex = min(startIndex + itemsPerPage, countries.value.count)
+        if startIndex < endIndex {
+            let newItems = Array(countries.value[startIndex..<endIndex])
+            
+            
+            
+            var updatedCountries = displayedCountries.value
+            updatedCountries.append(contentsOf: newItems)
+            displayedCountries.accept(updatedCountries)
+            
+            currentPage += 1
+            onUpdate?()
+        }
     }
 }

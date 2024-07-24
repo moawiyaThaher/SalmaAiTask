@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+enum SalmaKeys {
+    enum Networking: String {
+        case baseURL = "https://restcountries.com"
+    }
+}

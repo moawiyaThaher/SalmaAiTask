@@ -8,11 +8,11 @@
 import Foundation
 import Alamofire
 
-enum CountriesAPI {
+enum CountriesAPI: URLRequestConvertible {
     case fetchAllCountries
     
     var baseURL: String {
-        return "https://restcountries.com"
+        return SalmaKeys.Networking.baseURL.rawValue
     }
     
     var path: String {
