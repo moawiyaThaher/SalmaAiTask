@@ -1,31 +1,26 @@
 //
-//  CountriesViewModel.swift
+//  CombineCountriesViewModel.swift
 //  SalmaAiTask
 //
-//  Created by Moawiya Thaher on 22/07/2024.
+//  Created by Moawiya Thaher on 24/07/2024.
 //
 
 import Foundation
-import RxSwift
-import RxCocoa
+import Combine
 
-class CountriesViewModel {
+class CombineCountriesViewModel {
     
     // MARK: - Private Properties
     
     private let apiService: APIService
     private let databaseService = RealmManager.shared
-    private var countries = BehaviorRelay<[Country]>(value: [])
+    private var countries = CurrentValueSubject<[Country], Never>([])
     private var currentPage: Int = 0
     private let itemsPerPage: Int = 15
     
     // MARK: - Properties
     
-    var displayedCountries = BehaviorRelay<[Country]>(value: [])
-    
-    // MARK: - Callbacks
-    
-    var onUpdate: (() -> Void)?
+    var displayedCountries = CurrentValueSubject<[Country], Never>([])
     
     // MARK: - Init
     
@@ -42,7 +37,7 @@ class CountriesViewModel {
                 switch result {
                 case .success(let countries):
                     databaseService.saveObjects(countries)
-                    self.countries.accept(countries)
+                    self.countries.send(countries)
                     loadNextPage()
                 case .failure(let error):
                     print("Mewo Mewo: \(error)")
@@ -50,7 +45,7 @@ class CountriesViewModel {
             }
         } else {
             let savedContries = databaseService.retrieveObjects(Country.self) as? [Country] ?? []
-            countries.accept(savedContries)
+            countries.send(savedContries)
             loadNextPage()
         }
     }
@@ -65,10 +60,9 @@ class CountriesViewModel {
             
             var updatedCountries = displayedCountries.value
             updatedCountries.append(contentsOf: newItems)
-            displayedCountries.accept(updatedCountries)
+            displayedCountries.send(updatedCountries)
             
             currentPage += 1
-            onUpdate?()
         }
     }
 }

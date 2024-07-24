@@ -5,7 +5,6 @@
 //  Created by Moawiya Thaher on 22/07/2024.
 //
 
-
 import UIKit
 import RxSwift
 import RxCocoa
@@ -14,7 +13,11 @@ class CountriesViewController: UIViewController {
     
     // MARK: - Views
     
-    private let tableView = UITableView()
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
     
     // MARK: - Private Properties
     
@@ -36,9 +39,13 @@ class CountriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addViews()
+        addConstraints()
+        setupNavigationItem()
         setupTableView()
         bindTableView()
-        viewModel.loadCountries()
+        loadData()
         
         viewModel.onUpdate = { [weak self] in
             self?.reloadData()
@@ -47,11 +54,11 @@ class CountriesViewController: UIViewController {
     
     // MARK: - Private Methods
     
-    private func setupTableView() {
-        tableView.delegate = self
-        tableView.register(CountryTVC.self, forCellReuseIdentifier: "CountryTVC")
+    private func addViews() {
         view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func addConstraints() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -60,27 +67,35 @@ class CountriesViewController: UIViewController {
         ])
     }
     
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.register(CountryTVC.self, forCellReuseIdentifier: CountryTVC.identifier)
+    }
+    
     private func bindTableView() {
-        viewModel.displayedCountries
-            .bind(to: tableView.rx.items(cellIdentifier: "CountryTVC", cellType: CountryTVC.self)) { (index, country: Country, cell) in
-                
-                cell.configure(country: country)
-                
-            }
-            .disposed(by: disposeBag)
+        viewModel.displayedCountries.bind(to: tableView.rx.items(cellIdentifier: "CountryTVC", cellType: CountryTVC.self)) { (_, country: Country, cell) in
+            cell.configure(country: country)
+        }.disposed(by: disposeBag)
         
-        tableView.rx.willDisplayCell
-            .subscribe(onNext: { [weak self] cell, indexPath in
-                guard let self = self else { return }
-                if indexPath.row == self.viewModel.displayedCountries.value.count - 1 {
-                    self.viewModel.loadNextPage()
-                }
-            })
-            .disposed(by: disposeBag)
+        tableView.rx.willDisplayCell.subscribe { [weak self] _, indexPath in
+            guard let self = self else { return }
+            if indexPath.row == self.viewModel.displayedCountries.value.count - 1 {
+                self.viewModel.loadNextPage()
+            }
+        }.disposed(by: disposeBag)
+    }
+    
+    private func loadData() {
+        viewModel.loadCountries()
     }
     
     private func reloadData() {
         tableView.reloadData()
+    }
+    
+    private func setupNavigationItem() {
+        navigationItem.rightBarButtonItem = .init(image: .init(systemName: "magnifier"))
+        navigationItem.title = "Countries - Currency"
     }
 }
 

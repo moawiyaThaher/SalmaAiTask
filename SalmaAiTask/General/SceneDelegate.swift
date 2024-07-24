@@ -9,21 +9,14 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    var appCoordinator: AppCoordinator?
+    private var appCoordinator: AppCoordinator?
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let navController = UINavigationController()
-        appCoordinator = AppCoordinator()
-        appCoordinator?.navigationController = navController
-        appCoordinator?.start()
-        
-        window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = navController
-        window?.makeKeyAndVisible()
+        initAppCoordinator(using: windowScene)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -54,6 +47,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
+    // MARK: - Private Methods
+    
+    private func initAppCoordinator(using windowScene: UIWindowScene) {
+        let navController = UINavigationController()
+        appCoordinator = AppCoordinator()
+        appCoordinator?.navigationController = navController
+        appCoordinator?.start()
+        
+        window = UIWindow(windowScene: windowScene)
+        window?.rootViewController = navController
+        window?.makeKeyAndVisible()
+    }
 }
 

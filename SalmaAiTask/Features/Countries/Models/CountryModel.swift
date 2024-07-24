@@ -11,8 +11,8 @@ import RealmSwift
 class Country: Object, Codable {
     @objc dynamic var uuid: String? = UUID().uuidString
     @objc dynamic var name: Name? = nil
-    let currencies = List<CurrencyEntry>()
     @objc dynamic var flags: Flags? = nil
+    let currencies = List<CurrencyKeyValue>()
     
     override static func primaryKey() -> String? {
         return "uuid"
@@ -31,7 +31,7 @@ class Country: Object, Codable {
         self.flags = try container.decodeIfPresent(Flags.self, forKey: .flags)
         
         let currenciesDict = try container.decodeIfPresent([String: Currency].self, forKey: .currencies)
-        self.currencies.append(objectsIn: currenciesDict?.map { CurrencyEntry(key: $0.key, value: $0.value) } ?? [])
+        self.currencies.append(objectsIn: currenciesDict?.map { CurrencyKeyValue(key: $0.key, value: $0.value) } ?? [])
     }
     
     func encode(to encoder: Encoder) throws {
@@ -44,7 +44,7 @@ class Country: Object, Codable {
     }
 }
 
-class CurrencyEntry: Object, Codable {
+class CurrencyKeyValue: Object, Codable {
     @objc dynamic var key: String = ""
     @objc dynamic var value: Currency? = nil
     

@@ -9,9 +9,13 @@ import UIKit
 
 class CountryTVC: UITableViewCell {
 
+    // MARK: - Properites
+    
+    static let identifier = "CountryTVC"
+    
     // MARK: - Views
     
-    let flagImageView: UIImageView = {
+    private let flagImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 6
         imageView.clipsToBounds = true
@@ -20,7 +24,7 @@ class CountryTVC: UITableViewCell {
         return imageView
     }()
     
-    let nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = .systemFont(ofSize: 13)
@@ -28,7 +32,7 @@ class CountryTVC: UITableViewCell {
         return label
     }()
     
-    let currencyLabel: UILabel = {
+    private let currencyLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = .systemFont(ofSize: 13)
@@ -36,7 +40,7 @@ class CountryTVC: UITableViewCell {
         return label
     }()
     
-    let currencyCodeLabel: UILabel = {
+   private let currencyCodeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = .systemFont(ofSize: 13)
@@ -44,7 +48,7 @@ class CountryTVC: UITableViewCell {
         return label
     }()
     
-    let stackView: UIStackView = {
+   private let stackView: UIStackView = {
        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 10

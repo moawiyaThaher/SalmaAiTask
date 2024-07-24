@@ -20,7 +20,7 @@
 		E6635ACF2C4EF49D00424F14 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6635ACE2C4EF49D00424F14 /* RealmManager.swift */; };
 		E6635AD32C4EF67900424F14 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6635AD22C4EF67900424F14 /* CountryModel.swift */; };
 		E6635AD62C4EF8F000424F14 /* CountriesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6635AD52C4EF8F000424F14 /* CountriesAPI.swift */; };
-		E6635AD92C4EFA2D00424F14 /* SalmaAPIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6635AD82C4EFA2D00424F14 /* SalmaAPIServices.swift */; };
+		E6635AD92C4EFA2D00424F14 /* SalmaAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6635AD82C4EFA2D00424F14 /* SalmaAPIService.swift */; };
 		E6635ADE2C4EFBE400424F14 /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6635ADD2C4EFBE400424F14 /* CountriesViewModel.swift */; };
 		E6635AE12C4F008000424F14 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6635AE02C4F008000424F14 /* AppCoordinator.swift */; };
 		E6635AE32C4F062400424F14 /* CountryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6635AE22C4F062400424F14 /* CountryTVC.swift */; };
@@ -30,6 +30,8 @@
 		E6635AEF2C4FEC6E00424F14 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = E6635AEE2C4FEC6E00424F14 /* RxCocoa */; };
 		E6635AF12C4FEC6E00424F14 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = E6635AF02C4FEC6E00424F14 /* RxRelay */; };
 		E6635AF62C501C2200424F14 /* SalmaKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6635AF52C501C2200424F14 /* SalmaKeys.swift */; };
+		E6635AFC2C516B8E00424F14 /* CombineCountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6635AFB2C516B8E00424F14 /* CombineCountriesViewController.swift */; };
+		E6635B002C516C0500424F14 /* CombineCountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6635AFF2C516C0500424F14 /* CombineCountriesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,12 +67,14 @@
 		E6635ACE2C4EF49D00424F14 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		E6635AD22C4EF67900424F14 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		E6635AD52C4EF8F000424F14 /* CountriesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesAPI.swift; sourceTree = "<group>"; };
-		E6635AD82C4EFA2D00424F14 /* SalmaAPIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalmaAPIServices.swift; sourceTree = "<group>"; };
+		E6635AD82C4EFA2D00424F14 /* SalmaAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalmaAPIService.swift; sourceTree = "<group>"; };
 		E6635ADD2C4EFBE400424F14 /* CountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
 		E6635AE02C4F008000424F14 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		E6635AE22C4F062400424F14 /* CountryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTVC.swift; sourceTree = "<group>"; };
 		E6635AE82C4F09AD00424F14 /* UIIMageView+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIIMageView+Extenstions.swift"; sourceTree = "<group>"; };
 		E6635AF52C501C2200424F14 /* SalmaKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalmaKeys.swift; sourceTree = "<group>"; };
+		E6635AFB2C516B8E00424F14 /* CombineCountriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineCountriesViewController.swift; sourceTree = "<group>"; };
+		E6635AFF2C516C0500424F14 /* CombineCountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineCountriesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,12 +131,12 @@
 		E6635A8F2C4EEB9E00424F14 /* SalmaAiTask */ = {
 			isa = PBXGroup;
 			children = (
+				E6635AC22C4EEC7B00424F14 /* General */,
 				E6635AE72C4F099B00424F14 /* Extenstions */,
 				E6635AD02C4EF60B00424F14 /* Networking */,
 				E6635ACD2C4EF48A00424F14 /* Caching */,
-				E6635AC22C4EEC7B00424F14 /* General */,
-				E6635AC12C4EEC6A00424F14 /* Resources */,
 				E6635AC02C4EEC4900424F14 /* Features */,
+				E6635AC12C4EEC6A00424F14 /* Resources */,
 				E6635A9B2C4EEB9F00424F14 /* LaunchScreen.storyboard */,
 				E6635A9E2C4EEB9F00424F14 /* Info.plist */,
 			);
@@ -186,10 +190,11 @@
 		E6635AC32C4EF21C00424F14 /* Countries */ = {
 			isa = PBXGroup;
 			children = (
+				E6635AF82C516B4F00424F14 /* Combine Example */,
+				E6635AF72C5163C600424F14 /* Controllers */,
 				E6635AEA2C4FDFF000424F14 /* View Model */,
 				E6635AD12C4EF65C00424F14 /* Models */,
 				E6635AC62C4EF24800424F14 /* Views */,
-				E6635AC42C4EF24400424F14 /* CountriesViewController.swift */,
 			);
 			path = Countries;
 			sourceTree = "<group>";
@@ -214,7 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				E6635AD42C4EF8BA00424F14 /* Modules */,
-				E6635AD82C4EFA2D00424F14 /* SalmaAPIServices.swift */,
+				E6635AD82C4EFA2D00424F14 /* SalmaAPIService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -265,6 +270,39 @@
 				E6635AF52C501C2200424F14 /* SalmaKeys.swift */,
 			);
 			path = Keys;
+			sourceTree = "<group>";
+		};
+		E6635AF72C5163C600424F14 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E6635AC42C4EF24400424F14 /* CountriesViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E6635AF82C516B4F00424F14 /* Combine Example */ = {
+			isa = PBXGroup;
+			children = (
+				E6635AFA2C516B6A00424F14 /* View Model */,
+				E6635AF92C516B6400424F14 /* Controllers */,
+			);
+			path = "Combine Example";
+			sourceTree = "<group>";
+		};
+		E6635AF92C516B6400424F14 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E6635AFB2C516B8E00424F14 /* CombineCountriesViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E6635AFA2C516B6A00424F14 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				E6635AFF2C516C0500424F14 /* CombineCountriesViewModel.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -412,11 +450,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6635A912C4EEB9E00424F14 /* AppDelegate.swift in Sources */,
-				E6635AD92C4EFA2D00424F14 /* SalmaAPIServices.swift in Sources */,
+				E6635AD92C4EFA2D00424F14 /* SalmaAPIService.swift in Sources */,
 				E6635ADE2C4EFBE400424F14 /* CountriesViewModel.swift in Sources */,
 				E6635AD62C4EF8F000424F14 /* CountriesAPI.swift in Sources */,
+				E6635AFC2C516B8E00424F14 /* CombineCountriesViewController.swift in Sources */,
 				E6635AE92C4F09AD00424F14 /* UIIMageView+Extenstions.swift in Sources */,
 				E6635ACF2C4EF49D00424F14 /* RealmManager.swift in Sources */,
+				E6635B002C516C0500424F14 /* CombineCountriesViewModel.swift in Sources */,
 				E6635A932C4EEB9E00424F14 /* SceneDelegate.swift in Sources */,
 				E6635AE32C4F062400424F14 /* CountryTVC.swift in Sources */,
 				E6635AF62C501C2200424F14 /* SalmaKeys.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  SalmaAPIServices.swift
+//  SalmaAPIService.swift
 //  SalmaAiTask
 //
 //  Created by Moawiya Thaher on 22/07/2024.
@@ -8,8 +8,8 @@
 import Foundation
 import Alamofire
 
-class SalmaAPIServices: APIService {
-    func requestData<T>(endpoint: any Alamofire.URLRequestConvertible, completion: @escaping (Result<T, any Error>) -> Void) where T : Decodable {
+class SalmaAPIService: APIService {
+    func requestData<T>(endpoint: any Alamofire.URLRequestConvertible, completion: @escaping (Result<T, any Error>) -> Void) where T: Decodable {
         do {
             let request = try endpoint.asURLRequest()
             AF.request(request).responseDecodable(of: T.self) { response in

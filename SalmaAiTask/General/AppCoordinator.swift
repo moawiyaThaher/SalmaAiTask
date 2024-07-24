@@ -16,13 +16,19 @@ class AppCoordinator {
         startCountriesFlow()
     }
     
-    
     // MARK: - Private Methods
     
     private func startCountriesFlow() {
-        let apiService = SalmaAPIServices()
-        let viewModel = CountriesViewModel(apiService: apiService)
-        let viewController = CountriesViewController(viewModel: viewModel)
+        let apiService = SalmaAPIService()
+        
+//        /// RxSwift example
+//        let viewModel = CountriesViewModel(apiService: apiService)
+//        let viewController = CountriesViewController(viewModel: viewModel)
+//        navigationController?.pushViewController(viewController, animated: true)
+//        
+        /// Combine example
+        let viewModel = CombineCountriesViewModel(apiService: apiService)
+        let viewController = CombineCountriesViewController(viewModel: viewModel)
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
